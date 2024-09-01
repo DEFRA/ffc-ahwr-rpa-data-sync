@@ -1,0 +1,8 @@
+{{- include "ffc-helm-library.deployment" (list . "ffc-ahwr-rpa-data-sync.deployment") -}}
+{{- define "ffc-ahwr-rpa-data-sync.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "ffc-helm-library.container" (list . "ffc-ahwr-rpa-data-sync.container") }}
+{{- end -}}

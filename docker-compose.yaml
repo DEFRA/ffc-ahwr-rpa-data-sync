@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  ffc-ahwr-rpa-data-sync:
+    build:
+      context: .
+      target: production
+    image: ffc-ahwr-rpa-data-sync
+    container_name: ffc-ahwr-rpa-data-sync
+    environment:
+      APPINSIGHTS_CLOUDROLE: ffc-ahwr-rpa-data-sync-local
+      APPLICATIONINSIGHTS_CONNECTION_STRING: ${APPLICATIONINSIGHTS_CONNECTION_STRING}
+      APPLICATION_API_URI: http://host.docker.internal:3001/api
+      RPA_SYNC_PROCESS_ENABLED: "true"
+      RPA_SYNC_PROCESS_SCHEDULE: "0 21 * * *"
+      APIM_OCP_SUBSCRIPTION_KEY: ${APIM_OCP_SUBSCRIPTION_KEY:-changeme}
+      APIM_HOST_NAME: ${APIM_HOST_NAME:-https://login.microsoftonline.com}
+      APIM_OAUTH_PATH: ${APIM_OAUTH_PATH:-/c9d74090-b4e6-4b04-981d-e6757a160812/oauth2/v2.0/token}
+      APIM_CLIENT_ID: ${APIM_CLIENT_ID:-changeme}
+      APIM_CLIENT_SECRET: ${APIM_CLIENT_SECRET:-changeme}
+      APIM_SCOPE: ${APIM_SCOPE:-api://dev-futuretrade-int.defra.gov.uk/.default}

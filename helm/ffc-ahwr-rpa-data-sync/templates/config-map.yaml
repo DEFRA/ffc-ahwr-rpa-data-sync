@@ -1,0 +1,16 @@
+{{- include "ffc-helm-library.container-config-map" (list . "ffc-ahwr-rpa-data-sync.config-map") -}}
+{{- define "ffc-ahwr-rpa-data-sync.config-map" -}}
+data:
+  APPINSIGHTS_CLOUDROLE: {{ quote .Values.name }}
+  NODE_ENV: {{ quote .Values.environment }}
+  PORT: {{ quote .Values.container.port }}
+  APPLICATION_API_URI: {{ quote .Values.container.applicationApiUri }}
+  ACTIVE_APP_PROCESS_ENABLED: {{ quote .Values.container.activeAppProcessEnabled }}
+  ACTIVE_APP_PROCESS_SCHEDULE: {{ quote .Values.container.activeAppProcessSchedule }}
+  APIM_HOST_NAME: {{ quote .Values.container.apimHostname }}
+  APIM_OAUTH_PATH: {{ quote .Values.container.apimOAuthPath }}
+  APIM_SCOPE: {{ quote .Values.container.apimScope }}
+  RPA_GET_PERSON_SUMMARY_URL: {{ quote .Values.container.rpaGetPersonSummaryUrl }}
+  RPA_GET_ORGANISATION_PERMISSIONS_URL: {{ quote .Values.container.rpaGetOrganisationPermissionsUrl }}
+  RPA_GET_ORGANISATION_URL: {{ quote .Values.container.rpaGetOrganisationUrl }}
+{{- end -}}

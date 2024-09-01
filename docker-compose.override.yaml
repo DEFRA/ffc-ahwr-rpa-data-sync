@@ -1,0 +1,27 @@
+version: '3.8'
+
+# This override file should be used when running this service in isolation
+# to provide dependencies and expose ports for local testing
+
+services:
+  ffc-ahwr-rpa-data-sync:
+    build:
+      target: development
+    image: ffc-ahwr-rpa-data-sync-development
+    container_name: ffc-ahwr-rpa-data-sync-development
+    ports:
+      - "3010:3000"
+      - "9240:9229"
+    volumes:
+      - ./app:/home/node/app
+      - ./package.json:/home/node/package.json
+
+  redis:
+    image: redis:4.0.14
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6390:6379"
+
+volumes:
+  redis_data:

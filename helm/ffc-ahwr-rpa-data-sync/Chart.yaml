@@ -1,0 +1,9 @@
+apiVersion: v2
+description: RPA Data Sync for AHWR
+name: ffc-ahwr-rpa-data-sync
+# this version is automatically updated in the build pipline
+version: 1.0.0
+dependencies:
+- name: ffc-helm-library
+  version: 4.0.0
+  repository: https://raw.githubusercontent.com/defra/ffc-helm-repository/master/

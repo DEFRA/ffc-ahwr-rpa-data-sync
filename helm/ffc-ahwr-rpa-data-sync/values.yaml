@@ -1,0 +1,78 @@
+environment: development
+name: ffc-ahwr-rpa-data-sync
+namespace: ffc-ahwr
+workstream: ffc-ahwr
+image: ffc-ahwr-rpa-data-sync
+
+labels: {}
+
+aadPodIdentity: true
+
+appInsights:
+  connectionString:
+
+azureIdentity:
+  clientID:
+  resourceID:
+
+containerConfigMap:
+  name: ffc-ahwr-rpa-data-sync-config-map
+
+containerSecret:
+  name: ffc-ahwr-rpa-data-sync-container-secret
+  type: Opaque
+
+container:
+  imagePullPolicy: IfNotPresent
+  limitCpu: 120m
+  limitMemory: 200Mi
+  port: 3000
+  requestCpu: 100m
+  requestMemory: 200Mi
+  serviceUri:
+  applicationApiUri:
+  activeAppProcessEnabled:
+  activeAppProcessSchedule:
+  apimOcpSubscriptionKey:
+  apimHostname:
+  apimOAuthPath:
+  apimClientId:
+  apimClientSecret:
+  apimScope:
+  rpaHostname:
+  rpaGetPersonSummaryUrl:
+  rpaGetOrganisationPermissionsUrl:
+  rpaGetOrganisationUrl:
+
+deployment:
+  cpuThreshold: 40
+  memoryThreshold: 80
+  minReadySeconds: 0
+  minReplicas: 1
+  maxReplicas: 2
+  priorityClassName: default
+  restartPolicy: Always
+  replicas: 1
+
+ingress:
+  class: nginx
+  endpoint: ffc-ahwr-rpa-data-sync
+  server: value.replaced.from.app.config
+
+livenessProbe:
+  path: /healthz
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3
+
+readinessProbe:
+  path: /healthy
+  port: 3000
+  initialDelaySeconds: 10
+  periodSeconds: 10
+  failureThreshold: 3
+
+service:
+  port: 80
+  type: ClusterIP
