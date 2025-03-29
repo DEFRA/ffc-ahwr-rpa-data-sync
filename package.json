@@ -20,7 +20,7 @@
   ],
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@azure/msal-node": "2.12.0",
+    "@azure/msal-node": "2.16.2",
     "@hapi/boom": "10.00",
     "@hapi/hapi": "^20.1.5",
     "@hapi/inert": "^7.0.0",
